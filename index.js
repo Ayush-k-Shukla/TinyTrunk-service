@@ -18,3 +18,7 @@ app.use('/api/v1/', urlRoutes);
 app.listen(process.env.PORT, () => {
   console.log(`Server started on port ${process.env.PORT}`);
 });
+
+app.get('/', (req, res) => {
+  res.send({ INFO: 'API of Url shortner service' });
+});
