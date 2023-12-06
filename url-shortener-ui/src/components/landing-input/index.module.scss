@@ -1,0 +1,45 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  .bigText {
+    background: linear-gradient(
+      90deg,
+      #144ee3 -0.02%,
+      #eb568e 18.86%,
+      #a353aa 64.49%,
+      #144ee3 100.67%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .smallText {
+    color: #c9ced6;
+  }
+
+  .linkInput {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 30px;
+
+    .input {
+      border-radius: 48px;
+      border: 4px solid #353c4a;
+      background: #181e29;
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+
+      .btn {
+        border-radius: 48px;
+        border: 1px solid #144ee3;
+        background: #144ee3;
+        box-shadow: 10px 9px 22px 0px rgba(20, 78, 227, 0.38);
+      }
+    }
+  }
+}

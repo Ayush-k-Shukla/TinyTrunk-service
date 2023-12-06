@@ -19,6 +19,7 @@ function App() {
       mode: 'dark',
       primary: { main: '#181E29' },
     },
+    typography: {},
   });
 
   return (

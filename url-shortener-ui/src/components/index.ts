@@ -1,3 +1,3 @@
-import Header from './header/index.footer';
+import Header from './header/index.header';
 
 export { Header };

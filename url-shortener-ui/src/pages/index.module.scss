@@ -1,0 +1,13 @@
+.mainPageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+
+  .linkTable {
+    width: 80%;
+    padding-bottom: 20px;
+  }
+}
