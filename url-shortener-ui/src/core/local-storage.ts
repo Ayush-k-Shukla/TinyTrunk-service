@@ -23,7 +23,7 @@ export function saveShortenedUrl(newUrl: IShortenedUrl) {
  * @param {IShortenedUrl} newUrl
  * @returns {IShortenedUrl[]}
  */
-function getShortenedUrls(): IShortenedUrl[] {
+export function getShortenedUrls(): IShortenedUrl[] {
   const storedUrls = localStorage.getItem(LOCAL_STORAGE_KEY_NAMESPACE);
   return storedUrls ? JSON.parse(storedUrls) : [];
 }

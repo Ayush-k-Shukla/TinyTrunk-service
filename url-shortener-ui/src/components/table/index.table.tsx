@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import { formatCustomDate } from '../../core/date-time.helper';
 import { IShortenedUrl } from '../../core/interface';
-import Loader from '../loader/index.loader';
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {

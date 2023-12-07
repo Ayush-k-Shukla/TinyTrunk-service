@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import LandingInput from '../components/landing-input/index.landing-input';
+import Loader from '../components/loader/index.loader';
 import LinkTable from '../components/table/index.table';
 import { ApiStatus } from '../core/enum';
 import { IApiResponse } from '../core/interface';
@@ -38,6 +39,7 @@ const MainPage = () => {
         message: null,
         status: ApiStatus.FULLFILLED,
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setApiResponse({
         data: null,
