@@ -39,7 +39,6 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function LinkTable({ data }: { data: IShortenedUrl[] }) {
   return (
     <TableContainer component={Paper}>
-      {true && <Loader />}
       <Table sx={{ minWidth: 700 }} aria-label='customized table'>
         <TableHead>
           <TableRow style={{ background: '#181E29 !important' }}>

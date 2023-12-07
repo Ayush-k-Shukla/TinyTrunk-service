@@ -1,24 +1,33 @@
 import { IShortenedUrl } from './interface';
 
-// Function to save a shortened URL to the list in local storage
+export const LOCAL_STORAGE_KEY_NAMESPACE = 'shortenedUrls';
+
+/**
+ * Function to save a shortened URL to the list in local storage
+ *
+ * @export
+ * @param {IShortenedUrl} newUrl
+ */
 export function saveShortenedUrl(newUrl: IShortenedUrl) {
-  // Retrieve the existing list of shortened URLs from local storage
   const existingShortenedUrls = getShortenedUrls();
 
-  // Add the new shortened URL to the list
   const updatedShortenedUrls = [...existingShortenedUrls, newUrl];
 
-  // Save the updated list to local storage
   saveShortenedUrls(updatedShortenedUrls);
 }
 
-// Function to retrieve the list of shortened URLs from local storage
-export function getShortenedUrls(): IShortenedUrl[] {
-  const storedUrls = localStorage.getItem('shortenedUrls');
+/**
+ * Function to retrieve the list of shortened URLs from local storage
+ *
+ * @export
+ * @param {IShortenedUrl} newUrl
+ * @returns {IShortenedUrl[]}
+ */
+function getShortenedUrls(): IShortenedUrl[] {
+  const storedUrls = localStorage.getItem(LOCAL_STORAGE_KEY_NAMESPACE);
   return storedUrls ? JSON.parse(storedUrls) : [];
 }
 
-// Function to save a list of shortened URLs to local storage
-export function saveShortenedUrls(urls: IShortenedUrl[]) {
-  localStorage.setItem('shortenedUrls', JSON.stringify(urls));
+function saveShortenedUrls(urls: IShortenedUrl[]) {
+  localStorage.setItem(LOCAL_STORAGE_KEY_NAMESPACE, JSON.stringify(urls));
 }

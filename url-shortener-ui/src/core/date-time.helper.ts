@@ -1,5 +1,12 @@
 import dayjs from 'dayjs';
 
+/**
+ *  Conver date to format based on the current date
+ *
+ * @export
+ * @param {string} date
+ * @return {*}  {string}
+ */
 export function formatCustomDate(date: string): string {
   const formattedDate = dayjs(date);
 

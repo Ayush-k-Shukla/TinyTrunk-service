@@ -3,7 +3,7 @@ import {
   convertToShortUrl,
   getCountOfVisits,
   gotoLongUrl,
-} from '../controller/url.js';
+} from '../controller/url.controller.js';
 const router = express.Router();
 
 router.post('/shorten', convertToShortUrl);
