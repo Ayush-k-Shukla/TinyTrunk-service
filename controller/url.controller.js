@@ -14,9 +14,16 @@ import { urlSchemaValidator } from '../utils/input-validation.js';
  * @throws {Error} - If an error occurs while saving the URL.
  */
 export async function convertToShortUrl(req, res) {
-  const { originalUrl } = req.body;
+  const { error } = urlSchemaValidator.validate(req.body, {
+    abortEarly: false,
+  });
 
-  urlSchemaValidator.validate(req.body);
+  if (error) {
+    const validationMessages = error?.details?.map((detail) => detail.message);
+    return handleServerError(res, error, 400, validationMessages.join(','));
+  }
+
+  const { originalUrl } = req.body;
 
   const shortId = await getUniqueShortId();
 
@@ -24,22 +31,20 @@ export async function convertToShortUrl(req, res) {
     originalUrl: originalUrl,
   });
 
-  if (!alreadyEncodedUrl) {
-    handleSuccess(res, alreadyEncodedUrl);
+  if (alreadyEncodedUrl) {
+    return handleSuccess(res, alreadyEncodedUrl);
   }
 
   try {
-    const newUrl = new Url({
+    const newUrl = await Url.create({
       originalUrl: originalUrl,
       shortId: shortId,
       count: 0,
     });
 
-    await newUrl.save();
-
-    handleSuccess(res, newUrl, 201);
+    return handleSuccess(res, newUrl, 201);
   } catch (error) {
-    handleServerError(res, error);
+    return handleServerError(res, error);
   }
 }
 
@@ -60,15 +65,15 @@ export async function gotoLongUrl(req, res) {
     let url = await Url.findOne({ shortId: shortId });
 
     if (!url) {
-      handleServerError(res, {}, 404, 'Url not found');
+      return handleServerError(res, {}, 404, 'Url not found');
     }
 
     url.count = url.count + 1;
     await Url.findByIdAndUpdate(url._id, url);
 
-    res.redirect(url.originalUrl);
+    res.status(302).redirect(url.originalUrl);
   } catch (error) {
-    handleServerError(res, error);
+    return handleServerError(res, error);
   }
 }
 

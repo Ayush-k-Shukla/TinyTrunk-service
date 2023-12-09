@@ -15,3 +15,10 @@
 2. setup the CI/CD for deployment and probably use docker
 3. implement own hashing algo instead of sort id
 4. for a IP address add a max limit of request can be generated
+
+## FE
+
+### High Priority
+
+1. Add a unique identifier for a system to track link generate by that client on FE side
+2. if a link is already encoded then don't store in local storage

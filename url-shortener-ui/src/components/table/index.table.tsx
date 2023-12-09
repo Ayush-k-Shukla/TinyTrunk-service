@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import { formatCustomDate } from '../../core/date-time.helper';
+import { getShortLinkUrl } from '../../core/helper';
 import { IShortenedUrl } from '../../core/interface';
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -51,10 +52,10 @@ export default function LinkTable({ data }: { data: IShortenedUrl[] }) {
           {data.map((row) => (
             <StyledTableRow>
               <StyledTableCell component='th' scope='row'>
-                {row.shortenedUrl}
+                {getShortLinkUrl(row.shortId)}
               </StyledTableCell>
               <StyledTableCell>{row.originalUrl}</StyledTableCell>
-              <StyledTableCell>{row.clicks}</StyledTableCell>
+              <StyledTableCell>{row.count}</StyledTableCell>
               <StyledTableCell sx={{ whiteSpace: 'nowrap' }}>
                 {formatCustomDate(
                   row?.createdAt ?? '2023-12-06T09:04:00.000+00:00'

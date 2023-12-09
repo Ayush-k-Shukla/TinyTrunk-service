@@ -3,14 +3,16 @@ import LandingInput from '../components/landing-input/index.landing-input';
 import Loader from '../components/loader/index.loader';
 import LinkTable from '../components/table/index.table';
 import { ApiStatus } from '../core/enum';
-import { IApiResponse } from '../core/interface';
+import { IApiResponse, IShortenedUrl } from '../core/interface';
 import { getShortenedUrls, saveShortenedUrl } from '../core/local-storage';
 import { generateShortLink } from '../datasource/remote';
 import styles from './index.module.scss';
 
 const MainPage = () => {
   const [url, setUrl] = useState<string>('');
-  const [apiResponse, setApiResponse] = useState<IApiResponse<string>>({});
+  const [apiResponse, setApiResponse] = useState<IApiResponse<IShortenedUrl>>(
+    {}
+  );
 
   console.log(url);
 
@@ -24,16 +26,14 @@ const MainPage = () => {
     });
 
     try {
-      const data = await generateShortLink(shortUrl);
+      const { data } = await generateShortLink(shortUrl);
 
       saveShortenedUrl({
-        shortenedUrl: data,
-        originalUrl: url,
-        clicks: 5,
-        createdAt: '2023-10-20T09:04:00.000+00:00',
+        ...data,
       });
       setUrl('');
 
+      console.log({ data: data });
       setApiResponse({
         data: data,
         message: null,
@@ -41,6 +41,7 @@ const MainPage = () => {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      console.log({ err });
       setApiResponse({
         data: null,
         message: err?.message,

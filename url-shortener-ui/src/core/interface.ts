@@ -2,8 +2,9 @@ import { ApiStatus } from './enum';
 
 export interface IShortenedUrl {
   originalUrl: string;
-  shortenedUrl: string;
-  clicks?: number;
+  shortId: string;
+  count?: string;
+  activeTill?: string;
   createdAt?: string;
 }
 

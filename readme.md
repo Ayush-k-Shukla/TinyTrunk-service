@@ -1,4 +1,4 @@
-# URL Shortener - Backend
+# URL Shortener - Fullstack
 
 This is a URL-shortening service that allows users to create short links for long URLs. The application is built using node and Flask framework.
 
@@ -52,3 +52,5 @@ Redirect to the Original long url.
 `GET /api/count/:shortId`
 
 Get count of visits for an URL.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5754cb60-1d60-4215-9ca7-aa5b70060d44/deploy-status)](https://app.netlify.com/sites/startling-quokka-4e357c/deploys)
