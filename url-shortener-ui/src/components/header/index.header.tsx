@@ -1,4 +1,11 @@
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { GitHub } from '@mui/icons-material';
+import {
+  AppBar,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import styles from './index.module.scss';
 
 const Header = () => {
@@ -6,15 +13,23 @@ const Header = () => {
     <div>
       <AppBar position='sticky' color='primary'>
         <Container maxWidth='xl'>
-          <Toolbar>
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography
-              variant='h6'
-              noWrap
-              component='a'
               className={styles.logoText}
+              fontSize={30}
+              fontWeight={400}
+              fontFamily={'Inter'}
             >
-              LOGO
+              TinyUrl
             </Typography>
+
+            <IconButton
+              onClick={() => {}}
+              target='_blank'
+              href='https://github.com/Ayush-k-Shukla/URL-shortener'
+            >
+              <GitHub fontSize='large' />
+            </IconButton>
           </Toolbar>
         </Container>
       </AppBar>

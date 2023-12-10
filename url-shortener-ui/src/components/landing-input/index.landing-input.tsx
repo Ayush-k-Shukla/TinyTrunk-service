@@ -46,7 +46,7 @@ const LandingInput = ({
             ),
             startAdornment: (
               <InputAdornment position='start'>
-                <InsertLinkOutlinedIcon />
+                <InsertLinkOutlinedIcon sx={{ color: '#c9ced6' }} />
               </InputAdornment>
             ),
           }}

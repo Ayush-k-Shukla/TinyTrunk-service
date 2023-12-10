@@ -3,3 +3,10 @@ export enum ApiStatus {
   REJECTED,
   PENDING,
 }
+
+export enum SnackbarVariant {
+  SUCCESS,
+  ERROR,
+  INFO,
+  WARNING,
+}
