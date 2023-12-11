@@ -17,7 +17,6 @@ const Header = () => {
             <Typography
               className={styles.logoText}
               fontSize={30}
-              fontWeight={400}
               fontFamily={'Inter'}
             >
               TinyUrl

@@ -22,6 +22,7 @@ const StyledTableCell = styled(TableCell)(() => ({
     backgroundColor: '#181e2938',
     color: '#C9CED6',
     fontWeight: '300',
+    userSelect: 'all',
   },
 }));
 
