@@ -4,6 +4,7 @@ import Loader from '../components/loader/index.loader';
 import CustomSnackbar from '../components/snackbar/index.snackbar';
 import LinkTable from '../components/table/index.table';
 import { ApiStatus, SnackbarVariant } from '../core/enum';
+import { isValidUrl } from '../core/helper';
 import { IApiResponse, IShortenedUrl, ISnackBarState } from '../core/interface';
 import { getShortenedUrls, saveShortenedUrl } from '../core/local-storage';
 import { generateShortLink } from '../datasource/remote';
@@ -24,13 +25,10 @@ const MainPage = () => {
   const [snackBarState, setSnackBarState] =
     useState<ISnackBarState>(intialSnackBarState);
 
-  console.log(url);
-
   // Retrieve the list of shortened URLs later
   const retrievedShortenedUrls = getShortenedUrls();
 
   const checkIfSameLinkIsPresentInLocalStorage = () => {
-    console.log(retrievedShortenedUrls);
     for (const urlObj of retrievedShortenedUrls) {
       if (urlObj.originalUrl === url) {
         return true;
@@ -40,6 +38,15 @@ const MainPage = () => {
   };
 
   const generateLink = async () => {
+    if (!isValidUrl(url)) {
+      setSnackBarState({
+        message: 'Please provide a valid URL',
+        open: true,
+        variant: SnackbarVariant.ERROR,
+      });
+      return;
+    }
+
     if (checkIfSameLinkIsPresentInLocalStorage()) {
       setSnackBarState({
         message: 'Same link is already shortened',
@@ -63,7 +70,6 @@ const MainPage = () => {
       });
       setUrl('');
 
-      console.log({ data: data });
       setApiResponse({
         data: data,
         message: null,
@@ -78,8 +84,6 @@ const MainPage = () => {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      console.log({ err });
-
       setSnackBarState({
         message: 'Failed to generate short link',
         open: true,

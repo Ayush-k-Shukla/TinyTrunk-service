@@ -1,3 +1,5 @@
+import CopyAllTwoToneIcon from '@mui/icons-material/CopyAllTwoTone';
+import { IconButton } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import { formatCustomDate } from '../../core/date-time.helper';
-import { getShortLinkUrl } from '../../core/helper';
+import { copyToClipboard, getShortLinkUrl } from '../../core/helper';
 import { IShortenedUrl } from '../../core/interface';
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -23,6 +25,7 @@ const StyledTableCell = styled(TableCell)(() => ({
     color: '#C9CED6',
     fontWeight: '300',
     userSelect: 'all',
+    wordBreak: 'break-all',
   },
 }));
 
@@ -38,6 +41,10 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 export default function LinkTable({ data }: { data: IShortenedUrl[] }) {
+  const copyText = (text: string) => {
+    copyToClipboard(text);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label='customized table'>
@@ -45,7 +52,7 @@ export default function LinkTable({ data }: { data: IShortenedUrl[] }) {
           <TableRow style={{ background: '#181E29 !important' }}>
             <StyledTableCell>Short Link</StyledTableCell>
             <StyledTableCell>Original Link</StyledTableCell>
-            <StyledTableCell>Clicks</StyledTableCell>
+            {/* <StyledTableCell>Clicks</StyledTableCell> */}
             <StyledTableCell>Date</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -53,10 +60,19 @@ export default function LinkTable({ data }: { data: IShortenedUrl[] }) {
           {data.map((row) => (
             <StyledTableRow>
               <StyledTableCell component='th' scope='row'>
-                {getShortLinkUrl(row.shortId)}
+                <div
+                  style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                >
+                  {getShortLinkUrl(row.shortId)}
+                  <IconButton
+                    onClick={() => copyText(getShortLinkUrl(row.shortId))}
+                  >
+                    <CopyAllTwoToneIcon fontSize='small' />
+                  </IconButton>
+                </div>
               </StyledTableCell>
               <StyledTableCell>{row.originalUrl}</StyledTableCell>
-              <StyledTableCell>{row.count}</StyledTableCell>
+              {/* <StyledTableCell>{row.count}</StyledTableCell> */}
               <StyledTableCell sx={{ whiteSpace: 'nowrap' }}>
                 {formatCustomDate(
                   row?.createdAt ?? '2023-12-06T09:04:00.000+00:00'

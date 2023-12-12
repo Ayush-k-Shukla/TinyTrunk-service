@@ -10,7 +10,6 @@ import { gotoLongUrl } from './controller/url.controller.js';
 import { logRequest } from './middleware/logger.middleware.js';
 import urlRoutes from './routes/url.route.js';
 
-console.log('ALLOWED_ORIGINS:', process.env.ALLOWED_ORIGINS);
 const app = express();
 
 app.use(bodyParser.json());
@@ -24,8 +23,6 @@ const corsOptions = {
   methods: 'GET,POST,PUT',
 };
 app.use(cors(corsOptions));
-
-console.log(corsOptions);
 
 connectDB();
 
