@@ -6,3 +6,10 @@ export const connectDB = () => {
     useUnifiedTopology: true,
   });
 };
+
+export const connectTestDB = () => {
+  mongoose.connect(process.env.MONGO_URI_TEST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
