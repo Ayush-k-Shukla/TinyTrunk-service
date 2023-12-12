@@ -6,7 +6,5 @@ export const generateShortLink = async (
 ): Promise<{ data: IShortenedUrl }> => {
   const response = await axiosInstance.post('/short-link', { originalUrl });
 
-  console.log(response);
-
   return response.data;
 };
