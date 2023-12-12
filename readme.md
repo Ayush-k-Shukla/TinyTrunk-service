@@ -2,7 +2,7 @@
   URL-Shortner
 </h1>
 
-### Deployed URL: [LINK]()
+### Deployed URL: [LINK](https://tiny-ur.netlify.app/)
 
 This is a URL-shortening fullstack application that allows users to create short links for long URLs. The application is built using MERN(MongoDB, Express, React, Node).
 
